@@ -1,0 +1,25 @@
+{% extends "main/base.html" %}
+
+{% block title %}
+    Login Here
+{% endblock %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+<form method="post" class="form-group">
+    {% csrf_token %}
+    {% for field in form %}
+        <div class="mb-3">
+            {{ field.label_tag }}
+            {{ field }}
+            {% if field.errors %}
+                <div class="text-danger">
+                    {{ field.errors }}
+                </div>
+            {% endif %}
+        </div>
+    {% endfor %}
+    <button type="submit" class="btn btn-success">Login</button>
+</form>
+{% endblock %}
